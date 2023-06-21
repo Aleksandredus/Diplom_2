@@ -126,7 +126,11 @@ public class ActionSteps extends RequestSpecifications {
                 .body("{\n\"ingredients\": [\"61c0c5a71d1f82001bdaaa6d\",\"61c0c5a71d1f82001bdaaa70\",\"61c0c5a71d1f82001bdaaa73\"]\n}")
                 .post(CREATE_ORDER_ENDPOINT)
                 .then()
-                .log().all();
+                .log().all()
+                .statusCode(401)
+                .and()
+                .assertThat()
+                .body("message", equalTo("You should be authorised"));
     }
 
     @Step("Получение заказа авторизованного пользователя")

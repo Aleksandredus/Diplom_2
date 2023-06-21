@@ -49,16 +49,14 @@ public class ValidationUserSteps {
                 .and()
                 .assertThat()
                 .body("message", equalTo("You should be authorised"));
-
     }
 
     @Step("Проверка ответа при создании заказа без юзера")
-    public void createOrderWithoutUser(ValidatableResponse response) {
-        response
+    public void createOrderWithoutUser(ValidatableResponse response, int code, boolean status) {
+        response.assertThat()
                 .statusCode(401)
                 .and()
-                .assertThat()
-                .body("message", equalTo("You should be authorised"));
+                .body("message", equalTo("You should be authorised"), is(true));
     }
 
     @Step("Проверка ответа успешного создания заказа")

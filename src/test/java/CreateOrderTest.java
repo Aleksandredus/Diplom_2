@@ -38,8 +38,7 @@ public class CreateOrderTest {
     @DisplayName("Создание заказа без авторизации")
     @Description("Проверка получения ошибки 401 при созданис заказа неавторезированым пользователем")
     public void createOrderWithoutUserAutorization() {
-        ValidatableResponse response = actionSteps.createOrderOfUnknownUser();
-        validationUserSteps.createOrderWithoutUser(response);
+        actionSteps.createOrderOfUnknownUser();
     }
 
     @Test
