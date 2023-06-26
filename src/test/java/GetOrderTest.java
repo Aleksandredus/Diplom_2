@@ -34,7 +34,7 @@ public class GetOrderTest {
     @Test
     @DisplayName("Получение списка заказов без регистрации")
     @Description("Проверка получения ошибки с кодом 401 при получении заказа не авторизованного пользователя")
-    public void getOrderNoUserTest() {
+    public void getOrderWithoutUserTest() {
         ValidatableResponse response = actionSteps.getUnknownUserOrders();
         ValidationUserSteps.createOrderWithoutUser(response);
     }
