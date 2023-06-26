@@ -10,7 +10,6 @@ import org.junit.Test;
 public class GetOrderTest {
     private User user;
     private ActionSteps actionSteps;
-    private ValidationUserSteps validationUserSteps;
     private String accessToken;
     private Credentials credentials;
 
@@ -18,7 +17,6 @@ public class GetOrderTest {
     public void setUser() {
         user = UserMaker.random();
         actionSteps = new ActionSteps();
-        validationUserSteps = new ValidationUserSteps();
         credentials = new Credentials(user);
     }
 
@@ -38,7 +36,7 @@ public class GetOrderTest {
     @Description("Проверка получения ошибки с кодом 401 при получении заказа не авторизованного пользователя")
     public void getOrderNoUserTest() {
         ValidatableResponse response = actionSteps.getUnknownUserOrders();
-        //validationUserSteps.updateWithoutUser(response);
+        ValidationUserSteps.createOrderWithoutUser(response);
     }
 
     @After

@@ -12,9 +12,7 @@ public class CreateOrderTest {
     private User user;
     private Credentials credentials;
     private String accessToken;
-    private ValidationUserSteps validationUserSteps;
-    private int code;
-    private boolean statys;
+
 
     @Before
     public void setOrder() {
@@ -31,7 +29,7 @@ public class CreateOrderTest {
         ValidatableResponse response = actionSteps.loginUser(credentials);
         accessToken = response.extract().path("accessToken").toString();
         actionSteps.createOrderOfFamousUser(accessToken);
-        ValidationUserSteps.createOrderResponse(response, code, statys);
+        ValidationUserSteps.createOrderResponse(response);
     }
 
     @Test

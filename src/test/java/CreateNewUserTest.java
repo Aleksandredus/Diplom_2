@@ -12,8 +12,6 @@ public class CreateNewUserTest {
     private ActionSteps actionSteps;
     private ValidationUserSteps validationUserSteps;
     private String accessToken;
-    private int code;
-    private boolean statys;
 
     @Before
     public void setUser() {
@@ -28,7 +26,7 @@ public class CreateNewUserTest {
     public void creatureUserPositiveTest() {
         ValidatableResponse response = actionSteps.createNewUser(user);
         accessToken = response.extract().path("accessToken").toString();
-        validationUserSteps.userResponsePositive(response, code, statys);
+        validationUserSteps.userResponsePositive(response);
     }
 
     @Test

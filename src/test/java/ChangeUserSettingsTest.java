@@ -5,22 +5,19 @@ import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.equalTo;
 
 public class ChangeUserSettingsTest {
-    private User user;
     private User userForUpdate;
     private ActionSteps actionSteps;
     private ValidationUserSteps validationUserSteps;
-    private String accessToken;
+
 
     @Before
     public void setUser() {
-        user = UserMaker.random();
         userForUpdate = UserMaker.random();
         actionSteps = new ActionSteps();
         validationUserSteps = new ValidationUserSteps();
@@ -46,13 +43,6 @@ public class ChangeUserSettingsTest {
         userForUpdate.setEmail(RandomStringUtils.randomAlphabetic(10) + "@newexample.com");
         ValidatableResponse response = actionSteps.updateUser("", userForUpdate);
         validationUserSteps.updateWithoutUser(response);
-    }
-
-    @After
-    public void cleanUp() {
-        if (accessToken != null) {
-            actionSteps.deleteUser(accessToken);
-        }
     }
 
 }

@@ -8,7 +8,7 @@ import static org.hamcrest.CoreMatchers.is;
 
 public class ValidationUserSteps {
     @Step("Проверка ответа успешного создания пользователя")
-    public void userResponsePositive(ValidatableResponse response, int code, Boolean status) {
+    public void userResponsePositive(ValidatableResponse response) {
         response
                 .assertThat()
                 .statusCode(200)
@@ -52,15 +52,16 @@ public class ValidationUserSteps {
     }
 
     @Step("Проверка ответа при создании заказа без юзера")
-    public void createOrderWithoutUser(ValidatableResponse response, int code, boolean status) {
-        response.assertThat()
+    public static void createOrderWithoutUser(ValidatableResponse response) {
+        response
                 .statusCode(401)
                 .and()
-                .body("message", equalTo("You should be authorised"), is(true));
+                .assertThat()
+                .body("message", equalTo("You should be authorised"));
     }
 
     @Step("Проверка ответа успешного создания заказа")
-    public static void createOrderResponse(ValidatableResponse response, int code, Boolean status) {
+    public static void createOrderResponse(ValidatableResponse response) {
         response
                 .assertThat()
                 .statusCode(200)

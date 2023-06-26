@@ -13,8 +13,6 @@ public class UserAutorizationTest {
     private Credentials credentials;
     private ValidationUserSteps validationUserSteps;
     private String accessToken;
-    private int code;
-    private boolean statys;
 
     @Before
     public void setUser() {
@@ -31,7 +29,7 @@ public class UserAutorizationTest {
         actionSteps.createNewUser(user);
         ValidatableResponse response = actionSteps.loginUser(credentials);
         accessToken = response.extract().path("accessToken").toString();
-        validationUserSteps.userResponsePositive(response, code, statys);
+        validationUserSteps.userResponsePositive(response);
     }
 
     @Test
